@@ -1,29 +1,179 @@
+
 <html>
 <head>
+<script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>	
+<link rel="stylesheet" type="text/css" href="index.css">
+
 
 </head>
 
+<body>
+<div id = 'twitterFeed'></div>
+<script type="text/javascript" src="http://vazzak2.ci.northwestern.edu/courses/?term=4530&subject=EECS&callback=myCallback"></script>
 
-<div id = "hello" >
-hello world!
-</div>
-<style>
-#hello  {
 
-width:100px;
-height:100px;
-padding-top:40px;
-background-color:red;
-border:2px;
-
--webkit-animation:mymove 5s infinite;
-}
-
-@-webkit-keyframes mymove{
-  from{ width:100px;height:100px;}
-  to {width:500px;height:500px;}		
-
-}
-
-</style>
+<div class  = "right-panel">
+		<table id = "calendar-table">
+		  
+		  <col class="weekend">
+		  <col class="weekday" span="5">
+		  <col class="weekend">
+		  <thead>
+		    <tr>
+		      <th></th>	
+		      <th>Sun</th>
+		      <th>Mon</th>
+		      <th>Tue</th>
+		      <th>Wed</th>
+		      <th>Thu</th>
+		      <th>Fri</th>
+		      <th>Sat</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr class  = "time" id = "8am">
+		      <td>8</td> 		
+		      <td><div class="day" ></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>        
+		      <td><div class="day"></div></td>
+		    </tr>
+		   <tr class  = "time" id = "9am">
+		   	<td>9</td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		    </tr>
+		    <tr class  = "time">
+		    	<td>10</td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		    </tr>
+		    <tr class  = "time">
+		    	<td>11</td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		    </tr>
+		   <tr class  = "time">
+		   	<td>12</td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		    </tr>
+		    <tr class  = "time">
+		    	<td>1</td>
+		      <td><div class="day"></div> </td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		    </tr>
+		    <tr class  = "time">
+		    	<td>2</td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		    </tr>
+		    <tr class  = "time">
+		    	<td>3</td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		    </tr>
+		    <tr class  = "time">
+		    	<td>4</td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		    </tr>
+		    <tr class  = "time">
+		    	<td>5</td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		    </tr>
+		    <tr class  = "time">
+		    	<td>6</td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		    </tr>
+		    <tr class  = "time">
+		    	<td>7</td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		    </tr>
+		    <tr class  = "time">
+		    	<td>8</td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		    </tr>
+		    <tr class  = "time">
+		    	<td>9</td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		      <td><div class="day"></div></td>
+		    </tr>
+		  </tbody>
+		</table>
+	</div>
+</body>
+<script type="text/javascript" src = "index.js"></script>
 </html> 

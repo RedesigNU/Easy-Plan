@@ -193,20 +193,6 @@ $(document).ready(function() {
    }
 
 
-/*    $calendar.weekCalendar('clear');  */
+    $calendar.weekCalendar('clear');  
 	
-	
-	NewEvent = {
-               "id":9,
-               "start": new Date(year, month, day, 9),
-               "end": new Date(year, month, day, 9, 30),
-               "title":"math",
-            };
-	$("#calendar").weekCalendar('updateEvent',  NewEvent);
-/*
-	$('#calendar').weekCalendar({
-		  timeslotsPerHour : 2,
-	});
-	$('.wc-container').css('width', "100%");
-*/
 });

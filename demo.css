@@ -40,6 +40,12 @@ p {
 /*	background: url(images/header-bg.png) repeat-x;*/
 }
 
+
+.wc-title{
+	padding-top: 40%;
+	text-align: center;
+	font-size: 100%;
+}
 #event_edit_container label {
 	display: block;
 	margin-top: 1em;

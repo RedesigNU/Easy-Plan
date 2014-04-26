@@ -162,51 +162,12 @@ $(document).ready(function() {
       return {
       	
           events : [
-            {
-               "id":1,
-               "start": new Date(year, month, day, 12),
-               "end": new Date(year, month, day, 13, 30),
-               "title":"Lunch with Mike"
-            },
-            {
-               "id":2,
-               "start": new Date(year, month, day, 14),
-               "end": new Date(year, month, day, 14, 45),
-               "title":"Dev Meeting"
-            },
-
-            {
-               "id":6,
-               "start": new Date(year, month, day, 10),
-               "end": new Date(year, month, day, 11),
-               "title":"I'm read-only",
-               readOnly : true
-            },
-            {
-               "id":7,
-               "start": new Date(year, month, day + 2, 17),
-               "end": new Date(year, month, day + 3, 9),
-               "title":"Multiday"
-            }
+            
          ]
       };
    }
 
 
-/*    $calendar.weekCalendar('clear');  */
+    $calendar.weekCalendar('clear');  
 	
-	
-	NewEvent = {
-               "id":9,
-               "start": new Date(year, month, day, 9),
-               "end": new Date(year, month, day, 9, 30),
-               "title":"math",
-            };
-	$("#calendar").weekCalendar('updateEvent',  NewEvent);
-/*
-	$('#calendar').weekCalendar({
-		  timeslotsPerHour : 2,
-	});
-	$('.wc-container').css('width', "100%");
-*/
 });

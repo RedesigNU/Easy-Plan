@@ -5,6 +5,7 @@ var request_term = null;
 var request_subject = null;
 var request_school =null;
 var courses =null;
+var all_courses =[];
 
 var url_head = 'http://vazzak2.ci.northwestern.edu/';
 $(document).ready(function () {
@@ -15,9 +16,21 @@ $(document).ready(function () {
 	     // });
 	// var callbacks = $.Callbacks();
 	loadData();
-	// callbacks.add(select_courses);
+	setTimeout(function(){
+		select_all_courses();
+	},1000);
+
+	setTimeout(function(){
+		select_all_courses();
+	},1000);
+	// callbacks.add(loadData);
+	// callbacks.add(select_all_courses);
+
+	// callbacks.fire();
+	// $('body').on('click',select_all_courses);
 	$('.menu').on('click',select_courses);
-	
+
+	// $('input#search').quicksearch('#body section');
 	// var i = 0;
 	// for (var entry in terms.responseJSON) {
 	// 	i++;
@@ -30,6 +43,25 @@ $(document).ready(function () {
 
 
 })
+
+
+function select_all_courses(){
+	for(var i=0;i <terms.length; i++){
+		
+			$.ajax({
+                url: "http://vazzak2.ci.northwestern.edu/courses/?term="+terms[i].term_id+'&subject=EECS',
+                dataType: "json",  
+                // work with the response
+                success: function(response) {
+                	for(var x = 0;x <response.length; x++){
+                		all_courses.push(response[x]);
+                	}
+                   
+                }
+            });
+		} 
+	
+}
 
 function choose_term(id)
 {
@@ -52,7 +84,7 @@ function choose_subject(id)
 	//alert("id"+id);
 	var name = $('#' + id).text();
 	//alert(name);
-	$("#subjects").html(name +'<i class="dropdown icon"></i>'+' <div class="menu" id="subject_menu" style="overflow:scroll; height:150px"></div>');
+	$("#subjects").html(name +'<i class="dropdown icon"></i>'+' <div class="menu" id="subject_menu" style="overflow:scroll; height:300px"></div>');
 	//document.getElementById("terms").innerHTML = id;
 	//$('.ui.compact.menu').dropdown('set text', id);
 	handle_reponse_subjects(subjects);
@@ -163,7 +195,11 @@ function draw_courses(){
 	$("#body").empty();
 		for (var i =0;i<courses.length;i++){
 			// console.log(courses[i].title);
-			var to_append = '<section class ="ui segment" eroll = "false" days = '+courses[i].meeting_days +' start ='+courses[i].start_time+' end ='+courses[i].end_time+' id ="'+courses[i].class_num+'">'+'<i class="huge expand icon" onclick = "enroll(this)" style = "float:right"></i>'+'<h3>'+courses[i].catalog_num+" "+courses[i].title+'<h3>'+'<p>'+courses[i].requirements+'</p><p>'+courses[i].overview+'</p><p>'+courses[i].room+'</p><p>'+courses[i].start_time+' to '+courses[i].start_time+'</p></section>';
+			var to_append = '<section class ="ui segment" eroll = "false" days = '+courses[i].meeting_days +' start ='
+			+courses[i].start_time+' end ='+courses[i].end_time+' id ='+courses[i].class_num+ ' catalog_num = '+courses[i].catalog_num+'>'
+			+'<i class="huge expand icon" onclick = "enroll(this)" style = "float:right"></i>'+'<h3>'
+			+courses[i].catalog_num+" "+courses[i].title+'<h3>'+'<p>'+"Instructor: "+courses[i].instructor.name+'</p><p>'
+			+"Seats Available: "+courses[i].seats+'</p><p>'+"Room: " +courses[i].room+'</p><p>'+courses[i].start_time+' to '+courses[i].end_time+"  "+courses[i].meeting_days+' </p></section>';
 			$("#body").append(to_append);
 		}
 
@@ -172,14 +208,68 @@ function draw_courses(){
 function enroll(x){
 	var course = $(x).parent();
 	var status = course.prop('enroll');
-	$(x).parent().prop('enroll',!status);
-	if($(x).parent().prop('enroll')){
+	course.prop('enroll',!status);
+	if(course.prop('enroll')){
 		$(x).prop('class', 'huge collapse icon');
 	}
 	else $(x).prop('class', 'huge expand icon');
 	// var course = $('#'+$(x).parent().id);
 	// console.log($(x).parent().attr('id'));
-	console.log($(x).parent().prop('enroll'));
+	
+	console.log("x is "+x);
+	
+	var day = $(x).parent().attr('days');
+	var starttime = $(x).parent().attr('start');
+	var endtime = $(x).parent().attr('end');
+	console.log(starttime);
+	console.log(starttime[0]+starttime[1]);
+	console.log(endtime);
+
+	var n = day.length/2;
+	console.log(day);
+	var date = new Array(n);
+	for(var j = 0; j < n; j++){
+		switch(day[2*j+1]){
+			case "o": 
+				date[j] = 21;
+				break;
+			case "u": 
+				date[j] = 22;
+				break;
+			case "e": 
+				date[j] = 23;
+				break;
+			case "h": 
+				date[j] = 24;
+				break;
+			case "i": 
+				date[j] = 25;
+				break;
+			case "a": 
+				date[j] = 26;
+				break;
+			default: 
+				date[j] = 27;
+				break;
+		}		
+	}
+	//console.log(date);
+	console.log("catalog_num :" +course.attr('catalog_num'));
+	for(var j = 0; j < n; j++){
+		if($(x).parent().prop('enroll')){
+			NewEvent = {
+	               "id":$(x).parent().prop('id')*(j+1),
+	               "start": new Date(2014, 3, date[j], starttime[0]+starttime[1],starttime[3]+starttime[4]),
+	               "end": new Date(2014, 3, date[j], endtime[0]+endtime[1],endtime[3]+endtime[4]),
+	               "title":course.attr('catalog_num'),
+	            };
+	            
+			$("#calendar").weekCalendar('updateEvent',  NewEvent);
+	
+		}
+		else{
+			$("#calendar").weekCalendar('removeEvent',  $(x).parent().prop('id')*(j+1));
+	
+		}
+	}
 }
-
-

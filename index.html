@@ -20,6 +20,7 @@
   <link rel='stylesheet' type='text/css' href='demo.css' />
                   
   <link rel='stylesheet' type='text/css' href='calendar/skins/default.css' />
+  <link rel='stylesheet' type='text/css' href='Wallpaper-master/jquery.fs.wallpaper.css' />
 
 
 
@@ -39,6 +40,8 @@
   <script type='text/javascript' src='calendar/jquery.weekcalendar.js'></script>
 
   <script type='text/javascript' src='demo.js'></script>
+  <script type='text/javascript' src='quicksearch-master/jquery.quicksearch.js'></script>
+  <script type='text/javascript' src='Wallpaper-master/jquery.fs.wallpaper.js'></script>
   
 
 
@@ -72,7 +75,7 @@
       <div class="ui compact menu">
         <div class="ui simple dropdown item" id="subjects">
           Dropdown <i class="dropdown icon"></i>
-          <div class="menu" id="subject_menu" style="overflow:scroll; height:150px">
+          <div class="menu" id="subject_menu" style="overflow:scroll; height:300px">
           </div>
         </div>
       </div>
@@ -93,11 +96,11 @@
 
 
 
-  <div class="nine wide column">
+  <div class="eight wide column" style = "padding-left:0px;padding-right:0px;">
     <div class="ui segment">
       <h2>Search</h2>
-      <div class="ui icon input">
-        <input type="text" placeholder="Search...">
+      <div class="ui fluid icon input" style = "padding-bottom :10px;">
+        <input type="text" id = "search" placeholder="Search...">
         <i class="circular search icon"></i>
       </div>
       <div id = "body">
@@ -108,7 +111,7 @@
   
   </div>
 
-  <div class="four wide column " style = "margin:auto; position:fixed; height:500px;overflow:scroll">
+  <div class="five wide column " style = "margin:auto; position:fixed; height:500px;overflow:scroll">
     <div class="ui fixed right floated segment ">
 	          <div id='calendar' class ='CalendarClass'></div>
 
